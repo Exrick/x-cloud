@@ -1,0 +1,63 @@
+spring:
+  application:
+    name: gateway-server
+  # Redis
+  redis:
+    host: 127.0.0.1
+    password:
+    # 数据库索引 默认0
+    database: 0
+    port: 6379
+    timeout: 10000
+
+server:
+  port: 1002
+
+eureka:
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1000/eureka/
+
+zuul:
+  # 解决会话保持Cookie问题
+  add-host-header: true
+  # 解决重定向问题
+  sensitive-headers: '*'
+  routes:
+    # 路由配置 2种方式皆可
+    oauth:
+      path: /oauth/**
+      url: http://localhost:1003/oauth
+    base:
+      path: /base/**
+      serviceId: base-server
+
+# 多实例配置以举例 开头对应serviceId
+#base-server:
+#  ribbon:
+#    listOfServers: http://localhost:8080/,http://localhost:8081/
+
+# OAuth2
+security:
+  oauth2:
+    client:
+      access-token-uri: http://localhost:1003/oauth/token
+      client-id: xcloud
+      user-authorization-uri: http://localhost:1003/oauth/authorize
+    resource:
+      user-info-uri: http://localhost:1003/user
+      prefer-token-info: false
+
+# Swagger界面内容配置
+swagger:
+  title: XCloud Gateway API接口文档
+  description: XCloud Gateway Api Documentation
+  version: 1.0.0
+  termsOfServiceUrl: http://blog.exrick.cn
+  contact:
+    name: Exrick
+    url: http://blog.exrick.cn
+    email: 1012139570@qq.com

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-common" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-config" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-eureka" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-eureka/src/main/resources/application.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-gateway" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-gateway/src/main/resources/application.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-modules" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-modules/xcloud-base" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-modules/xcloud-base/xcloud-base-api" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-modules/xcloud-base/xcloud-base-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-modules/xcloud-base/xcloud-base-service/src/main/resources/application.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-modules/xcloud-base/xcloud-base-service/src/main/resources/bootstrap.yml" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/xcloud-oauth" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

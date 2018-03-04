@@ -1,0 +1,28 @@
+server:
+  port: 1001
+eureka:
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1000/eureka/
+
+spring:
+  cloud:
+    config:
+      server:
+        # Git/SVN配置
+        git:
+        #svn:
+          # 仓库地址与账密
+          uri:
+          username:
+          password:
+          # 指定文件夹
+          search-paths:
+      # 快速返回失败信息
+      fail-fast: true
+  application:
+    name: config-server
+

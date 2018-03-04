@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: oauth-server
+  # Redis
+  redis:
+    host: 127.0.0.1
+    password:
+    # 数据库索引 默认0
+    database: 0
+    port: 6379
+    timeout: 10000
+
+server:
+  port: 1003
+
+eureka:
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1000/eureka/
+
+# OAuth配置
+xcloud:
+  oauth:
+    clientId: ENC(6+MZAAAvXC0kAtA+qgVSxA==)
+    secret: ENC(u+7DHvCv+WmUYHDDW89GBQ==)
+    # 无用可以随意设置
+    scope: xcloud
+
+# Swagger界面内容配置
+swagger:
+  title: XCloud OAuthServer API接口文档
+  description: XCloud OAuthServer Api Documentation
+  version: 1.0.0
+  termsOfServiceUrl: http://blog.exrick.cn
+  contact:
+    name: Exrick
+    url: http://blog.exrick.cn
+    email: 1012139570@qq.com

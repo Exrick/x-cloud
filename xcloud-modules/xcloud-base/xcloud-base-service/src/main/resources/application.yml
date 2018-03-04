@@ -1,0 +1,59 @@
+# 配置文件加密
+jasypt:
+  encryptor:
+    password: xcloud
+
+server:
+  port: 1004
+
+eureka:
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:1000/eureka/
+
+spring:
+  application:
+    name: base-server
+  # 数据源
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/xcloud_base?useUnicode=true&characterEncoding=utf-8&useSSL=false
+    username: root
+    # Jasyp加密 可到xcloud-common服务中找到JasypUtil生成加密结果
+    password: ENC(hiDl0S/3fQ42A9chNzldNw==)
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.jdbc.Driver
+    logSlowSql: true
+  jpa:
+    show-sql: true
+    generate-ddl: false
+    hibernate:
+      ddl-auto: none
+  # Redis
+  redis:
+    host: 127.0.0.1
+    password:
+    # 数据库索引 默认0
+    database: 0
+    port: 6379
+    timeout: 10000
+
+# Swagger界面内容配置
+swagger:
+  title: XCloud BaseServer API接口文档
+  description: XCloud BaseServer Api Documentation
+  version: 1.0.0
+  termsOfServiceUrl: http://blog.exrick.cn
+  contact:
+    name: Exrick
+    url: http://blog.exrick.cn
+    email: 1012139570@qq.com
+
+# 关闭Spring Security
+security:
+  basic:
+    enabled: false
+
+

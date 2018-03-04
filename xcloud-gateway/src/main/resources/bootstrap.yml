@@ -1,0 +1,16 @@
+# 以下配置需放在bootstrap中，因为加载顺序: bootstrap > config配置中心 > application
+spring:
+  cloud:
+    config:
+      # 启用读取远程配置中心 此处已关闭 节省开发资源 建议根据你硬件配置选择是否启用xcloud-config配置中心服务
+      enabled: false
+      discovery:
+        # 使用服务发现组件的xcloud-config 启用远程配置中心时记得设为true 此处关闭防止报错
+        enabled: false
+        # 指定服务发现组件中config的serviceId
+        service-id: config-server
+      # 对应配置文件名规则: /{label}/{search-paths}/{name或application.name}-{profile}}
+      name: gateway
+      profile: dev
+      # 分支
+      label: master

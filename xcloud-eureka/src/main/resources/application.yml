@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: eureka-server
+
+server:
+  port: 1000
+
+eureka:
+  server:
+    # 关闭保护机制 生产环境建议开启
+    enable-self-preservation: false
+    eviction-interval-timer-in-ms: 5000
+  instance:
+    # 若不配置将注册操作系统的hostname
+    prefer-ip-address: true
+    ip-address: 127.0.0.1
+    hostname: localhost
+  client:
+    # 单点 不同步其他eureka节点数据
+    register-with-eureka: false
+    # 不注册自己
+    fetch-registry: false
+    serviceUrl:
+      # 默认交互地址 多个以逗号分隔
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
