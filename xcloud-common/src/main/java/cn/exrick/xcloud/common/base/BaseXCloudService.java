@@ -23,8 +23,7 @@ public interface BaseXCloudService<E, ID extends Serializable> {
      * @return
      */
     public default E get(ID id) {
-        //推荐使用findOne
-        return getRepository().findOne(id);
+        return getRepository().getOne(id);
     }
 
     /**
@@ -68,7 +67,7 @@ public interface BaseXCloudService<E, ID extends Serializable> {
      * @return
      */
     public default Iterable<E> saveOrUpdateAll(Iterable<E> entities) {
-        return getRepository().save(entities);
+        return getRepository().saveAll(entities);
     }
 
     /**
@@ -84,7 +83,7 @@ public interface BaseXCloudService<E, ID extends Serializable> {
      * @param id
      */
     public default void delete(ID id) {
-        getRepository().delete(id);
+        getRepository().deleteById(id);
     }
 
     /**
@@ -92,7 +91,7 @@ public interface BaseXCloudService<E, ID extends Serializable> {
      * @param entities
      */
     public default void delete(Iterable<E> entities) {
-        getRepository().delete(entities);
+        getRepository().deleteAll(entities);
     }
 
     /**
