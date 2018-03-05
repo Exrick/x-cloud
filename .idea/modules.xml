@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/x-cloud.iml" filepath="$PROJECT_DIR$/x-cloud.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xcloud-modules/xcloud-base/xcloud-base.iml" filepath="$PROJECT_DIR$/xcloud-modules/xcloud-base/xcloud-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xcloud-modules/xcloud-base/xcloud-base-api/xcloud-base-api.iml" filepath="$PROJECT_DIR$/xcloud-modules/xcloud-base/xcloud-base-api/xcloud-base-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xcloud-modules/xcloud-base/xcloud-base-service/xcloud-base-service.iml" filepath="$PROJECT_DIR$/xcloud-modules/xcloud-base/xcloud-base-service/xcloud-base-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xcloud-common/xcloud-common.iml" filepath="$PROJECT_DIR$/xcloud-common/xcloud-common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xcloud-config/xcloud-config.iml" filepath="$PROJECT_DIR$/xcloud-config/xcloud-config.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xcloud-eureka/xcloud-eureka.iml" filepath="$PROJECT_DIR$/xcloud-eureka/xcloud-eureka.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xcloud-gateway/xcloud-gateway.iml" filepath="$PROJECT_DIR$/xcloud-gateway/xcloud-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xcloud-modules/xcloud-modules.iml" filepath="$PROJECT_DIR$/xcloud-modules/xcloud-modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/xcloud-oauth/xcloud-oauth.iml" filepath="$PROJECT_DIR$/xcloud-oauth/xcloud-oauth.iml" />
+    </modules>
+  </component>
+</project>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="xcloud-base-api" />
+        <module name="xcloud-base-service" />
+        <module name="xcloud-common" />
+        <module name="xcloud-config" />
+        <module name="xcloud-eureka" />
+        <module name="xcloud-gateway" />
+        <module name="xcloud-oauth" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="x-cloud" target="1.8" />
+      <module name="xcloud-base" target="1.8" />
+      <module name="xcloud-base-api" target="1.8" />
+      <module name="xcloud-base-service" target="1.8" />
+      <module name="xcloud-common" target="1.8" />
+      <module name="xcloud-config" target="1.8" />
+      <module name="xcloud-eureka" target="1.8" />
+      <module name="xcloud-gateway" target="1.8" />
+      <module name="xcloud-modules" target="1.8" />
+      <module name="xcloud-oauth" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
