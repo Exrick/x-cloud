@@ -41,13 +41,13 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
-        //配置一个客户端 password、authorization_code认证
+        //配置一个客户端 password认证
         clients.inMemory()
                 .withClient(clientId)
                 .secret(secret)
-                //密码、授权码模式
-                .authorizedGrantTypes("password", "authorization_code", "refresh_token")
-                //此处的scopes是无用的，可以随意设置
+                //密码模式
+                .authorizedGrantTypes("password", "refresh_token")
+                //权限范围 可选项
                 .scopes(scope);
 
     }
@@ -62,9 +62,9 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
+    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
 
-        oauthServer
+        security
                 //允许表单认证
                 .allowFormAuthenticationForClients()
                 .tokenKeyAccess("permitAll()")

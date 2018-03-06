@@ -1,3 +1,11 @@
+# 配置文件加密
+jasypt:
+  encryptor:
+    password: xcloud
+
+server:
+  port: 1003
+
 spring:
   application:
     name: oauth-server
@@ -10,9 +18,6 @@ spring:
     port: 6379
     timeout: 10000
 
-server:
-  port: 1003
-
 eureka:
   instance:
     ip-address: 127.0.0.1
@@ -24,9 +29,9 @@ eureka:
 # OAuth配置
 xcloud:
   oauth:
-    clientId: ENC(6+MZAAAvXC0kAtA+qgVSxA==)
-    secret: ENC(u+7DHvCv+WmUYHDDW89GBQ==)
-    # 无用可以随意设置
+    clientId: ENC(Kaq1/mCkIM/fkHWr4COfSA==)
+    secret: ENC(swRBBeV4fGUpwnMz53o3UQ==)
+    # 权限范围 可选项
     scope: xcloud
 
 # Swagger界面内容配置

@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.R
 import javax.servlet.http.HttpServletResponse;
 
 /**
+ * oauth-server本身也是一个resource server
  * @author Exrickx
  */
 @Configuration
@@ -17,13 +18,11 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
         http
+                //所有请求都需经过认证和授权
+                .authorizeRequests().anyRequest().authenticated()
+                //禁用csrf为了方便，否则退出链接必须要发送一个带csrf_token的post请求
+                .and()
                 .csrf().disable()
-                .exceptionHandling()
-                .authenticationEntryPoint((request, response, authException) -> response.sendError(HttpServletResponse.SC_UNAUTHORIZED))
-                .and()
-                .authorizeRequests()
-                .anyRequest().authenticated()
-                .and()
                 .httpBasic();
     }
 }

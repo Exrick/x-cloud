@@ -1,3 +1,6 @@
+server:
+  port: 1002
+
 spring:
   application:
     name: gateway-server
@@ -9,9 +12,6 @@ spring:
     database: 0
     port: 6379
     timeout: 10000
-
-server:
-  port: 1002
 
 eureka:
   instance:
@@ -45,8 +45,9 @@ security:
   oauth2:
     client:
       access-token-uri: http://localhost:1003/oauth/token
-      client-id: xcloud
       user-authorization-uri: http://localhost:1003/oauth/authorize
+      client-id: xcloud-demo
+      client-secret: xcloud-demo
     resource:
       user-info-uri: http://localhost:1003/user
       prefer-token-info: false

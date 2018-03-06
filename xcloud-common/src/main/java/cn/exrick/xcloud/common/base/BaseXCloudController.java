@@ -66,7 +66,7 @@ public abstract class BaseXCloudController<E, ID extends Serializable> {
     public Result<Object> delAll(@ModelAttribute E entity){
 
         getService().delete(entity);
-        return new ResultUtil<Object>().setData(null);
+        return new ResultUtil<Object>().setSuccessMsg("删除数据成功");
     }
 
     @RequestMapping(value = "/delByIds",method = RequestMethod.DELETE)
@@ -77,6 +77,6 @@ public abstract class BaseXCloudController<E, ID extends Serializable> {
         for(ID id:ids){
             getService().delete(id);
         }
-        return new ResultUtil<Object>().setData(null);
+        return new ResultUtil<Object>().setSuccessMsg("批量删除数据成功");
     }
 }

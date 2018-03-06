@@ -25,7 +25,7 @@ public class JasypUtil {
         config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
         config.setStringOutputType("base64");
         encryptor.setConfig(config);
-        String result = encryptor.encrypt("123456");
+        String result = encryptor.encrypt(value);
         return "ENC("+ result + ")";
     }
 

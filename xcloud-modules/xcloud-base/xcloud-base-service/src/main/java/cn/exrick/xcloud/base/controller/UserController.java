@@ -9,10 +9,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 /**
@@ -32,11 +29,11 @@ public class UserController extends BaseXCloudController<User, String> {
         return userService;
     }
 
-    @RequestMapping(value = "/getUserByUsername", method = RequestMethod.GET)
+    @RequestMapping(value = "/findUserByUsername/{username}", method = RequestMethod.GET)
     @ApiOperation("通过用户名获取用户")
-    public Result<Object> getUserByUsername(@RequestParam String username){
+    public Result<Object> findUserByUsername(@PathVariable String username){
 
-        User u=userService.findUserByUsername(username);
-        return new ResultUtil().setData(u);
+        User user=userService.findUserByUsername(username);
+        return new ResultUtil().setData(user);
     }
 }

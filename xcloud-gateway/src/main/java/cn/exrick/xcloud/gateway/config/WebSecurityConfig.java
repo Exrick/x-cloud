@@ -18,13 +18,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.
                 antMatcher("/**")
-                //所有请求都得经过认证和授权
+                //所有请求都需经过认证和授权
                 .authorizeRequests().anyRequest().authenticated()
                 .and().authorizeRequests().antMatchers("/","/anon").permitAll()
                 .and()
-                //禁用csrf为了方便,否则退出链接必须要发送一个带csrf_token的post请求
+                //禁用csrf为了方便，否则退出链接必须要发送一个带csrf_token的post请求
                 .csrf().disable()
-                // 退出的URL
+                // 退出Url
                 .logout().logoutUrl("/logout").permitAll()
                 // 退出成功后跳转路径
                 .logoutSuccessUrl("/login");
