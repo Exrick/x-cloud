@@ -36,6 +36,6 @@ public class UserServiceImpl implements UserService {
         if(list!=null&&list.size()>0){
             return list.get(0);
         }
-        throw new XCloudException("用户名不存在");
+        return null;
     }
 }
