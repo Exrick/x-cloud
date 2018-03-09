@@ -23,9 +23,9 @@ public class ServiceFallbackProvider implements FallbackProvider {
     }
 
     @Override
-    public ClientHttpResponse fallbackResponse(Throwable cause) {
+    public ClientHttpResponse fallbackResponse(String route, Throwable cause) {
 
-        log.error("网关异常: {}", cause.getMessage());
+        log.error("网关路由: {} 异常: {}", route, cause.getMessage());
 
         return new ClientHttpResponse() {
 
@@ -51,7 +51,7 @@ public class ServiceFallbackProvider implements FallbackProvider {
 
             @Override
             public InputStream getBody() throws IOException {
-                return new ByteArrayInputStream("Service Unavailable".getBytes());
+                return new ByteArrayInputStream(("Service Unavailable " + route).getBytes());
             }
 
             @Override
@@ -61,11 +61,5 @@ public class ServiceFallbackProvider implements FallbackProvider {
                 return headers;
             }
         };
-    }
-
-    @Override
-    public ClientHttpResponse fallbackResponse() {
-
-        return fallbackResponse(null);
     }
 }
