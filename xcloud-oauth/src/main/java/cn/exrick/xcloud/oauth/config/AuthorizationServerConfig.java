@@ -1,7 +1,10 @@
 package cn.exrick.xcloud.oauth.config;
 
+import cn.exrick.xcloud.common.constant.CommonConstant;
+import cn.exrick.xcloud.common.constant.OAuthConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.redis.connection.RedisConnectionFactory;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -11,6 +14,7 @@ import org.springframework.security.oauth2.config.annotation.web.configuration.A
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerEndpointsConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configurers.AuthorizationServerSecurityConfigurer;
+import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.redis.RedisTokenStore;
 
 /**
@@ -45,10 +49,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         clients.inMemory()
                 .withClient(clientId)
                 .secret(secret)
-                //密码模式
-                .authorizedGrantTypes("password", "refresh_token")
+                //密码、授权码模式
+                .authorizedGrantTypes(OAuthConstant.PASSWORD, OAuthConstant.REFRESH_TOKEN)
                 //权限范围 可选项
-                .scopes(scope);
+                .scopes(scope).
+                //自动授权 不需授权确认操作
+                autoApprove(true);
 
     }
 
@@ -58,16 +64,25 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
         endpoints
                 .tokenStore(new RedisTokenStore(redisConnectionFactory))
                 .authenticationManager(authenticationManager)
-                .userDetailsService(userDetailsService);
+                .userDetailsService(userDetailsService)
+                .accessTokenConverter(jwtAccessTokenConverter());
     }
 
     @Override
-    public void configure(AuthorizationServerSecurityConfigurer security) throws Exception {
+    public void configure(AuthorizationServerSecurityConfigurer oauthServer) throws Exception {
 
-        security
+        oauthServer
                 //允许表单认证
                 .allowFormAuthenticationForClients()
                 .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");;
+                .checkTokenAccess("isAuthenticated()");
+    }
+
+    @Bean
+    public JwtAccessTokenConverter jwtAccessTokenConverter() {
+
+        JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
+        jwtAccessTokenConverter.setSigningKey(CommonConstant.SIGN_KEY);
+        return jwtAccessTokenConverter;
     }
 }

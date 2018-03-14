@@ -15,7 +15,7 @@ import java.io.Serializable;
  * @author Exrickx
  */
 @Slf4j
-@Service("UserDetailsService")
+@Service
 public class UserDetailServiceImpl implements UserDetailsService, Serializable {
 
     @Autowired
@@ -25,6 +25,9 @@ public class UserDetailServiceImpl implements UserDetailsService, Serializable {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         User user=userService.findUserByUsername(username);
-        return null;
+        if(user==null){
+            throw new UsernameNotFoundException("用户 "+ username +" 不存在");
+        }
+        return new SecurityUserDetails(user);
     }
 }

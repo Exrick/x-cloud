@@ -28,9 +28,10 @@ zuul:
   sensitive-headers: '*'
   routes:
     # 路由配置 2种方式皆可
-    oauth:
-      path: /oauth/**
-      url: http://localhost:1003/oauth
+    auth:
+      path: /auth/**
+      serviceId: oauth-server
+      # url: http://localhost:1003/oauth
     base:
       path: /base/**
       serviceId: base-server
@@ -40,17 +41,28 @@ zuul:
 #  ribbon:
 #    listOfServers: http://localhost:8080/,http://localhost:8081/
 
-# OAuth2
+# OAuth2客户端相关配置
 security:
   oauth2:
     client:
-      access-token-uri: http://localhost:1003/oauth/token
-      user-authorization-uri: http://localhost:1003/oauth/authorize
+      access-token-uri: http://localhost:1002/auth/oauth/token
+      user-authorization-uri: http://localhost:1002/auth/oauth/authorize
       client-id: xcloud-demo
       client-secret: xcloud-demo
+    # OAuth2登录地址 默认/login
+    sso:
+      login-path: /login
     resource:
-      user-info-uri: http://localhost:1003/user
+      loadBalanced: true
+      user-info-uri: http://localhost:1002/auth/user
       prefer-token-info: false
+
+ignored:
+  urls:
+    - /swagger-ui.html
+    - /swagger-resources/**
+    - /swagger/**
+    - /*/v2/api-docs
 
 # Swagger界面内容配置
 swagger:

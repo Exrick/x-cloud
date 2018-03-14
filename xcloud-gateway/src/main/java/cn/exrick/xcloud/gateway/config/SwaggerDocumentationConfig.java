@@ -16,9 +16,9 @@ import java.util.Map;
  * 网关整合Swagger文档在同一页面
  * @author Exrickx
  */
+@Slf4j
 @Component
 @Primary
-@Slf4j
 public class SwaggerDocumentationConfig implements SwaggerResourcesProvider {
 
     @Autowired

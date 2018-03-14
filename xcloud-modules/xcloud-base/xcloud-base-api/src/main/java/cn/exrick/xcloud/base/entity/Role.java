@@ -21,4 +21,6 @@ public class Role extends BaseXCloudEntity{
 
     @Id
     private String id = UUID.randomUUID().toString().replace("-","");
+
+    private String name;
 }

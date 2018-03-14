@@ -33,6 +33,15 @@ public abstract class BaseXCloudController<E, ID extends Serializable> {
         return new ResultUtil<Object>().setData(o);
     }
 
+    @RequestMapping(value = "/getAll",method = RequestMethod.GET)
+    @ResponseBody
+    @ApiOperation(value = "获取全部数据")
+    public Result<Object> getAll(){
+
+        List<E> list=getService().getAll();
+        return new ResultUtil<Object>().setData(list);
+    }
+
     @RequestMapping(value = "/getByPage",method = RequestMethod.GET)
     @ResponseBody
     @ApiOperation(value = "分页获取")

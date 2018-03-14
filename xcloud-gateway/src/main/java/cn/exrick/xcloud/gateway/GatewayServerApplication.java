@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ComponentScan;
 @SpringCloudApplication
 @EnableFeignClients
 @ComponentScan(value = {"cn.exrick.xcloud.gateway", "cn.exrick.xcloud.common"})
-@EnableAutoConfiguration(exclude={DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
+@EnableAutoConfiguration(exclude = {DataSourceAutoConfiguration.class, HibernateJpaAutoConfiguration.class})
 public class GatewayServerApplication {
 
     public static void main(String[] args) {

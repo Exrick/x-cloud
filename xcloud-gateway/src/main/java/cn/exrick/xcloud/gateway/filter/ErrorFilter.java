@@ -31,6 +31,7 @@ public class ErrorFilter extends ZuulFilter {
 
     @Override
     public Object run() {
+
         RequestContext ctx = RequestContext.getCurrentContext();
         Throwable throwable = ctx.getThrowable();
         log.error("ErrorFilter : {}", throwable.getCause().getMessage());

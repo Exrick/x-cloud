@@ -1,5 +1,6 @@
 package cn.exrick.xcloud.common.utils;
 
+import cn.exrick.xcloud.common.constant.CommonConstant;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 
@@ -16,6 +17,25 @@ public class JasypUtil {
      */
     public static String encyptPwd(String password,String value){
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
+        encryptor.setConfig(cryptor(password));
+        String result = encryptor.encrypt(value);
+        return "ENC("+ result + ")";
+    }
+
+    /**
+     * 解密
+     * @param password 配置文件中设定的加密密码 jasypt.encryptor.password
+     * @param value 待解密密文
+     * @return
+     */
+    public static String decyptPwd(String password,String value){
+        PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
+        encryptor.setConfig(cryptor(password));
+        String result = encryptor.decrypt(value);
+        return result;
+    }
+
+    public static SimpleStringPBEConfig cryptor(String password){
         SimpleStringPBEConfig config = new SimpleStringPBEConfig();
         config.setPassword(password);
         config.setAlgorithm("PBEWithMD5AndDES");
@@ -24,12 +44,14 @@ public class JasypUtil {
         config.setProviderName("SunJCE");
         config.setSaltGeneratorClassName("org.jasypt.salt.RandomSaltGenerator");
         config.setStringOutputType("base64");
-        encryptor.setConfig(config);
-        String result = encryptor.encrypt(value);
-        return "ENC("+ result + ")";
+        return config;
     }
 
     public static void main(String[] args){
+
+        //加密
         System.out.println(encyptPwd("xcloud","xcloud"));
+        //解密
+        System.out.println(decyptPwd("xcloud","Kaq1/mCkIM/fkHWr4COfSA=="));
     }
 }

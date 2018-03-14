@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -51,8 +52,9 @@ public class User extends BaseXCloudEntity {
 
     private Integer type;
 
+    @JsonIgnore
     @Transient
-    private String[] roles;
+    private List<Role> roles;
 
     @Transient
     private String[] permissions;

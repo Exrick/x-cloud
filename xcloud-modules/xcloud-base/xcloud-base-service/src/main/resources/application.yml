@@ -21,7 +21,7 @@ spring:
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/xcloud_base?useUnicode=true&characterEncoding=utf-8&useSSL=false
     username: root
-    # Jasyp加密 可到xcloud-common服务中找到JasypUtil生成加密结果
+    # Jasyp加密 可到xcloud-common服务中找到JasypUtil加解密工具类生成加密结果
     password: ENC(hiDl0S/3fQ42A9chNzldNw==)
     type: com.alibaba.druid.pool.DruidDataSource
     driverClassName: com.mysql.jdbc.Driver
