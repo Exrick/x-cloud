@@ -29,11 +29,11 @@ public class UserController extends BaseXCloudController<User, String> {
         return userService;
     }
 
-    @RequestMapping(value = "/findUserByUsername/{username}", method = RequestMethod.GET)
+    @RequestMapping(value = "/findByUsername/{username}", method = RequestMethod.GET)
     @ApiOperation("通过用户名获取用户")
     public Result<Object> findUserByUsername(@PathVariable String username){
 
-        User user=userService.findUserByUsername(username);
+        User user=userService.findByUsername(username);
         return new ResultUtil().setData(user);
     }
 }

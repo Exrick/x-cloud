@@ -4,7 +4,6 @@ import cn.exrick.xcloud.common.config.RedisCachingConfig;
 import cn.exrick.xcloud.common.config.Swagger2Config;
 import cn.exrick.xcloud.common.exception.RestCtrlExceptionHandler;
 import org.springframework.boot.SpringApplication;
-import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.SpringCloudApplication;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;

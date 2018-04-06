@@ -13,5 +13,5 @@ public interface UserService extends BaseXCloudService<User,String> {
      * @param username
      * @return
      */
-    User findUserByUsername(String username);
+    User findByUsername(String username);
 }

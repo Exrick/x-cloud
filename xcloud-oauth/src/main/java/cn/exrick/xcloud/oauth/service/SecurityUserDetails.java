@@ -24,7 +24,7 @@ public class SecurityUserDetails extends User implements UserDetails {
             this.setId(user.getId());
             this.setUsername(user.getUsername());
             this.setEmail(user.getEmail());
-            this.setTelPhone(user.getTelPhone());
+            this.setMobile(user.getMobile());
             this.setPassword(user.getCryptPassword());
             this.setSex(user.getSex());
             this.setAvatar(user.getAvatar());

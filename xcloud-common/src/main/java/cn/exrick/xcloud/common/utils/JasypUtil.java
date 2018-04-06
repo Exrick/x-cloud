@@ -1,6 +1,5 @@
 package cn.exrick.xcloud.common.utils;
 
-import cn.exrick.xcloud.common.constant.CommonConstant;
 import org.jasypt.encryption.pbe.PooledPBEStringEncryptor;
 import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 

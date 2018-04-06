@@ -44,7 +44,7 @@ public abstract class BaseXCloudController<E, ID extends Serializable> {
 
     @RequestMapping(value = "/getByPage",method = RequestMethod.GET)
     @ResponseBody
-    @ApiOperation(value = "分页获取")
+    @ApiOperation(value = "分页获取全部数据")
     public Result<Object> getByPage(@ModelAttribute PageVo page){
 
         Page<E> list=getService().findAll(PageUtil.initPage(page));

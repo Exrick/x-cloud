@@ -1,6 +1,8 @@
 package cn.exrick.xcloud.common.base;
 
+import cn.exrick.xcloud.common.constant.CommonConstant;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
@@ -21,25 +23,22 @@ public abstract class BaseXCloudEntity implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 状态
-     */
-    private Integer status;
+    @ApiModelProperty(value = "删除标记 默认0正常 1删除")
+    private Integer delFlag = CommonConstant.STATUS_NORMAL;
 
-    /**
-     * 描述备注
-     */
-    private String description;
-
+    @ApiModelProperty(value = "创建者")
     private String createBy;
 
     @CreatedDate
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
+    @ApiModelProperty(value = "更新者")
     private String updateBy;
 
     @LastModifiedDate
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "更新时间")
     private Date updateTime;
 }

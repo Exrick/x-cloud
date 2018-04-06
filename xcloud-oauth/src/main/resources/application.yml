@@ -1,4 +1,4 @@
-# 配置文件加密
+# 配置文件加密key
 jasypt:
   encryptor:
     password: xcloud

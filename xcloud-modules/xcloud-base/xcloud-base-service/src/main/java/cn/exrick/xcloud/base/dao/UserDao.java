@@ -15,5 +15,5 @@ public interface UserDao extends BaseXCloudDao<User,String> {
      * @param username
      * @return
      */
-    List<User> findUserByUsername(String username);
+    List<User> findByUsername(String username);
 }

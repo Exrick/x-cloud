@@ -30,9 +30,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Cacheable(key = "'user:' + #username")
-    public User findUserByUsername(String username) {
+    public User findByUsername(String username) {
         
-        List<User> list=userDao.findUserByUsername(username);
+        List<User> list=userDao.findByUsername(username);
         if(list!=null&&list.size()>0){
             return list.get(0);
         }
