@@ -6,8 +6,8 @@ oauth:1003
 base:1004
 
 # 分支说明
-- master: Spring Cloud Edgware.SR2 / Spring Boot 1.5.9.RELEASE
-- Finchley: Spring Cloud Finchley.M7 / Spring Boot 2.0.0.M7
+- master: Spring Cloud Edgware.SR3 / Spring Boot 1.5.10.RELEASE
+- Finchley: Spring Cloud Finchley.M9 / Spring Boot 2.0.0.RELEASE
 
 # 开发注意
 - 若配置文件出现乱码 请修改编译器文件编码格式为UTF-8

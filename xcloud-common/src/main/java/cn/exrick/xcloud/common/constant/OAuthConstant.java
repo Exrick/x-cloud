@@ -3,20 +3,35 @@ package cn.exrick.xcloud.common.constant;
 /**
  * @author Exrickx
  */
-public class OAuthConstant {
+public interface OAuthConstant {
+
+    /**
+     * token请求头名称
+     */
+    String REQ_HEADER = "Authorization";
+
+    /**
+     * token分割符
+     */
+    String TOKEN_SPLIT = "Bearer ";
+
+    /**
+     * jwt签名
+     */
+    String SIGN_KEY = "xcloud";
 
     /**
      * 授权码模式
      */
-    public static final String AUTHORIZATION_CODE = "authorization_code";
+    String AUTHORIZATION_CODE = "authorization_code";
 
     /**
      * 密码模式
      */
-    public static final String PASSWORD = "password";
+    String PASSWORD = "password";
 
     /**
-     * 刷新token
+     * 更新token
      */
-    public static final String REFRESH_TOKEN = "refresh_token";
+    String REFRESH_TOKEN = "refresh_token";
 }

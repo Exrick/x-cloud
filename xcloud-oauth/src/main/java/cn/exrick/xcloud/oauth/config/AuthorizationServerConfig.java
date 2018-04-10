@@ -2,6 +2,7 @@ package cn.exrick.xcloud.oauth.config;
 
 import cn.exrick.xcloud.common.constant.CommonConstant;
 import cn.exrick.xcloud.common.constant.OAuthConstant;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +21,7 @@ import org.springframework.security.oauth2.provider.token.store.redis.RedisToken
 /**
  * @author Exrickx
  */
+@Slf4j
 @Configuration
 @EnableAuthorizationServer
 public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdapter {
@@ -45,6 +47,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     @Override
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
+        log.info("开始加载OAuth");
         //配置一个客户端 password认证
         clients.inMemory()
                 .withClient(clientId)
@@ -82,7 +85,7 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public JwtAccessTokenConverter jwtAccessTokenConverter() {
 
         JwtAccessTokenConverter jwtAccessTokenConverter = new JwtAccessTokenConverter();
-        jwtAccessTokenConverter.setSigningKey(CommonConstant.SIGN_KEY);
+        jwtAccessTokenConverter.setSigningKey(OAuthConstant.SIGN_KEY);
         return jwtAccessTokenConverter;
     }
 }

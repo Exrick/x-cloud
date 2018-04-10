@@ -5,7 +5,6 @@ import cn.exrick.xcloud.common.constant.CommonConstant;
 import cn.exrick.xcloud.common.utils.AESUtil;
 import cn.hutool.core.util.StrUtil;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
@@ -72,10 +71,6 @@ public class User extends BaseXCloudEntity {
     @JsonIgnore
     @Transient
     private List<Role> roles;
-
-    @JsonIgnore
-    @Transient
-    private String[] permissions;
 
     public String getCryptPassword() {
 
