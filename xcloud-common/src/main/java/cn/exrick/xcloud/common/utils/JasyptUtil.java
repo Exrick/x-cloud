@@ -6,10 +6,10 @@ import org.jasypt.encryption.pbe.config.SimpleStringPBEConfig;
 /**
  * @author Exrickx
  */
-public class JasypUtil {
+public class JasyptUtil {
 
     /**
-     * Jasyp生成加密结果
+     * Jasypt生成加密结果
      * @param password 配置文件中设定的加密密码 jasypt.encryptor.password
      * @param value 待加密值
      * @return
@@ -18,7 +18,7 @@ public class JasypUtil {
         PooledPBEStringEncryptor encryptor = new PooledPBEStringEncryptor();
         encryptor.setConfig(cryptor(password));
         String result = encryptor.encrypt(value);
-        return "ENC("+ result + ")";
+        return result;
     }
 
     /**

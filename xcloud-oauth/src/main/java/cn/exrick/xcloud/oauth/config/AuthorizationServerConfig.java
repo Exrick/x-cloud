@@ -48,12 +48,12 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
     public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 
         log.info("开始加载OAuth");
-        //配置一个客户端 password认证
+        //配置一个客户端
         clients.inMemory()
                 .withClient(clientId)
                 .secret(secret)
-                //密码、授权码模式
-                .authorizedGrantTypes(OAuthConstant.PASSWORD, OAuthConstant.REFRESH_TOKEN)
+                //指定客户端允许的grant_types 这里提供授权码、密码模式
+                .authorizedGrantTypes(OAuthConstant.AUTHORIZATION_CODE, OAuthConstant.PASSWORD, OAuthConstant.REFRESH_TOKEN)
                 //权限范围 可选项
                 .scopes(scope).
                 //自动授权 不需授权确认操作

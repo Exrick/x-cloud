@@ -27,11 +27,11 @@ zuul:
   # 解决重定向问题
   sensitive-headers: '*'
   routes:
-    # 路由配置 2种方式皆可
+    # 路由配置 2种方式皆可 配置serviceId与url
     auth:
       path: /auth/**
-      serviceId: oauth-server
-      # url: http://localhost:1003/oauth
+      #serviceId: oauth-server
+      url: http://localhost:1003/oauth
     base:
       path: /base/**
       serviceId: base-server
@@ -45,18 +45,26 @@ zuul:
 security:
   oauth2:
     client:
-#      access-token-uri: http://oauth-server/auth/oauth/token
-#      user-authorization-uri: http://oauth-server/auth/oauth/authorize
+      # 指定获取access token的URI
+      access-token-uri: http://localhost:1003/oauth/token
+      # 用户跳转去获取access token的URI
+      user-authorization-uri: http://localhost:1003/oauth/authorize
       client-id: xcloud
+      # 指定客户端client secret 默认随机
       client-secret: xcloud
+      # 也可在此指定客户端允许的grant types
+      authorized-grant-types:
     # OAuth2登录地址 默认/login
     sso:
       login-path: /login
     resource:
       loadBalanced: true
-      user-info-uri: http://oauth-server/auth/user
+      user-info-uri: http://localhost:1003/user
       prefer-token-info: false
+  # security忽略地址 ,分隔 作用与ignored.urls等同
+  ignored:
 
+# 忽略鉴权url 格式更加整齐清晰
 ignored:
   urls:
     - /swagger-ui.html

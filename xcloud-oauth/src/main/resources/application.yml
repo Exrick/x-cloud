@@ -29,16 +29,24 @@ eureka:
 # OAuth配置
 xcloud:
   oauth:
-    # Jasyp加密 可到xcloud-common服务中找到JasypUtil加解密工具类生成加密结果
+    # Jasypt加密 可到xcloud-common服务中找到JasyptUtil加解密工具类生成加密结果
     clientId: ENC(Kaq1/mCkIM/fkHWr4COfSA==)
     secret: ENC(swRBBeV4fGUpwnMz53o3UQ==)
     # 权限范围 可选项
     scope: xcloud
 
+# 忽略鉴权url 格式更加整齐清晰
 ignored:
   urls:
-    - /auth/**
+    - /oauth/**
     - /*/v2/api-docs
+
+security:
+  oauth2:
+    resource:
+      filter-order: 3
+  # security忽略地址 ,分隔 作用与ignored.urls等同
+  ignored:
 
 # Swagger界面内容配置
 swagger:
