@@ -17,7 +17,7 @@ public class RestCtrlExceptionHandler {
     @ExceptionHandler(XCloudException.class)
     @ResponseStatus(value = HttpStatus.OK)
     public Result<Object> handleXCloudException(XCloudException e) {
-        String errorMsg="XCloud exception";
+        String errorMsg = "XCloud exception";
         if (e!=null){
             errorMsg=e.getMessage();
             log.warn(e.toString());
@@ -28,7 +28,7 @@ public class RestCtrlExceptionHandler {
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.OK)
     public Result<Object> handleException(Exception e) {
-        String errorMsg="Exception";
+        String errorMsg = "Exception";
         if (e!=null){
             errorMsg=e.getMessage();
             log.warn(e.toString());

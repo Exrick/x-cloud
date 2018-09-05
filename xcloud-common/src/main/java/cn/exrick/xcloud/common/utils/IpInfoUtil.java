@@ -1,12 +1,10 @@
 package cn.exrick.xcloud.common.utils;
 
-import cn.exrick.xcloud.common.vo.IpResult;
+import cn.exrick.xcloud.common.vo.IpLocate;
+import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import com.google.gson.Gson;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
@@ -16,16 +14,15 @@ import java.net.UnknownHostException;
 /**
  * @author Exrickx
  */
+@Slf4j
 public class IpInfoUtil {
 
-    private static final Logger log = LoggerFactory.getLogger(IpInfoUtil.class);
-
     /**
-     * Mob api 免费无限制IP查询接口
+     * Mob api
      */
-    private static final String GET_IP_API = "http://apicloud.mob.com/ip/query?key=appkey&ip=";
+    private static final String APPKEY = "你的appkey";
 
-    private static final String LOCALHOST = "0:0:0:0:0:0:0:1";
+    private static final String LOCAL_HOST = "0:0:0:0:0:0:0:1";
 
     /**
      * 获取客户端IP地址
@@ -59,10 +56,26 @@ public class IpInfoUtil {
                 ip = ip.substring(0, ip.indexOf(","));
             }
         }
-        if(LOCALHOST.equals(ip)){
-            ip="127.0.0.1";
+        if(LOCAL_HOST.equals(ip)){
+            ip = "127.0.0.1";
         }
         return ip;
+    }
+
+    /**
+     * 获取IP返回地理天气信息
+     * @param ip ip地址
+     * @return
+     */
+    public String getIpWeatherInfo(String ip){
+
+        String GET_IP_WEATHER = "http://apicloud.mob.com/v1/weather/ip?key="+ APPKEY +"&ip=";
+        if(StrUtil.isNotBlank(ip)){
+            String url = GET_IP_WEATHER + ip;
+            String result= HttpUtil.get(url);
+            return result;
+        }
+        return null;
     }
 
     /**
@@ -70,18 +83,24 @@ public class IpInfoUtil {
      * @param ip ip地址
      * @return
      */
-    public static String getIpLocate(String ip){
+    public String getIpCity(String ip){
+
+        String GET_IP_LOCATE = "http://apicloud.mob.com/ip/query?key="+ APPKEY +"&ip=";
         if(null != ip){
-            String url = GET_IP_API + ip;
-            String json= HttpUtil.get(url);
-            String result="未知",successCode="success";
+            String url = GET_IP_LOCATE + ip;
+            String result="未知";
             try{
-                IpResult ipResult=new Gson().fromJson(json, IpResult.class);
-                if(successCode.equals(ipResult.getMsg())){
-                    result=ipResult.getIpData().getCountry()+" "+ipResult.getIpData().getProvince()+" "+ipResult.getIpData().getCity();
+                String json= HttpUtil.get(url, 3000);
+                IpLocate locate=new Gson().fromJson(json, IpLocate.class);
+                if(("200").equals(locate.getRetCode())){
+                    if(StrUtil.isNotBlank(locate.getResult().getProvince())){
+                        result=locate.getResult().getProvince()+" "+locate.getResult().getCity();
+                    }else{
+                        result=locate.getResult().getCountry();
+                    }
                 }
             }catch (Exception e){
-                log.error("无效的IP");
+                log.info("获取IP信息失败");
             }
             return result;
         }

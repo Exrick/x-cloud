@@ -2,8 +2,11 @@ server:
   port: 1001
 eureka:
   instance:
-    ip-address: 127.0.0.1
+    # 使用ip注册
     prefer-ip-address: true
+    ip-address: 127.0.0.1
+    # 默认hostname注册
+    hostname: localhost
   client:
     serviceUrl:
       defaultZone: http://localhost:1000/eureka/
@@ -12,9 +15,8 @@ spring:
   cloud:
     config:
       server:
-        # Git/SVN配置
+        # Git/SVN配置 更换svn此处改为svn:
         git:
-        #svn:
           # 仓库地址与账密
           uri:
           username:

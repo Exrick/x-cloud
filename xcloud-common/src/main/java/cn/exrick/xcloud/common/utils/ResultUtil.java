@@ -23,6 +23,14 @@ public class ResultUtil<T> {
         return this.result;
     }
 
+    public Result<T> setSuccessMsg(String msg){
+        this.result.setSuccess(true);
+        this.result.setMessage(msg);
+        this.result.setCode(200);
+        this.result.setResult(null);
+        return this.result;
+    }
+
     public Result<T> setData(T t, String msg){
         this.result.setResult(t);
         this.result.setCode(200);

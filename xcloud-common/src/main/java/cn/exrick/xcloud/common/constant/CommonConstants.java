@@ -3,7 +3,7 @@ package cn.exrick.xcloud.common.constant;
 /**
  * @author Exrickx
  */
-public class CommonConstants {
+public interface CommonConstants {
 
-    public static final String TEST = "test";
+    String TEST = "test";
 }

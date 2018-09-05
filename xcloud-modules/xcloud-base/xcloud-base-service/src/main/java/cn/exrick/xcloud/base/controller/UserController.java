@@ -36,7 +36,7 @@ public class UserController extends BaseXCloudController<User, String> {
     @ApiOperation("通过用户名获取用户")
     public Result<Object> getUserByUsername(@RequestParam String username){
 
-        User u=userService.findUserByUsername(username);
+        User u = userService.findUserByUsername(username);
         return new ResultUtil().setData(u);
     }
 }
