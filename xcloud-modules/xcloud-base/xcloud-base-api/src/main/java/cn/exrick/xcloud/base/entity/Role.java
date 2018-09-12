@@ -1,13 +1,15 @@
 package cn.exrick.xcloud.base.entity;
 
 import cn.exrick.xcloud.common.base.BaseXCloudEntity;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.persistence.Table;
-import java.util.UUID;
+import javax.persistence.Transient;
+import java.util.List;
 
 /**
  * @author Exrickx
@@ -15,10 +17,22 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "t_role")
-public class Role extends BaseXCloudEntity{
+@TableName("t_role")
+public class Role extends BaseXCloudEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    private String id = UUID.randomUUID().toString().replace("-","");
+    @ApiModelProperty(value = "角色名 以ROLE_开头")
+    private String name;
+
+    @ApiModelProperty(value = "是否为注册默认角色")
+    private Boolean defaultRole;
+
+    @ApiModelProperty(value = "备注")
+    private String description;
+
+    @Transient
+    @TableField(exist=false)
+    @ApiModelProperty(value = "拥有权限")
+    private List<Permission> permissions;
 }

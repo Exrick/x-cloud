@@ -8,8 +8,8 @@ server:
 
 eureka:
   instance:
-    ip-address: 127.0.0.1
     prefer-ip-address: true
+    ip-address: 127.0.0.1
   client:
     serviceUrl:
       defaultZone: http://localhost:1000/eureka/
@@ -28,20 +28,21 @@ spring:
     # Druid StatViewServlet配置
     druid:
       stat-view-servlet:
-      # 默认true 内置监控页面首页/druid/index.html
-      enabled: true
-      url-pattern: /druid/*
-      # 允许清空统计数据
-      reset-enable: true
-      login-username: root
-      login-password: ENC(F4B0s6u9xcDw3V+P0qC4CA==)
-      # IP白名单 多个逗号分隔
-      allow:
-      # IP黑名单
-      deny:
+        # 默认true 内置监控页面首页/druid/index.html
+        enabled: true
+        url-pattern: /druid/*
+        # 允许清空统计数据
+        reset-enable: true
+        login-username: root
+        login-password: ENC(hiDl0S/3fQ42A9chNzldNw==)
+        # IP白名单 多个逗号分隔
+        allow:
+        # IP黑名单
+        deny:
   jpa:
     show-sql: true
-    generate-ddl: false
+    # 自动生成表结构
+    generate-ddl: true
     hibernate:
       ddl-auto: none
   # Redis
@@ -52,6 +53,7 @@ spring:
     database: 0
     port: 6379
     timeout: 10000
+
 
 # Swagger界面内容配置
 swagger:
@@ -64,9 +66,10 @@ swagger:
     url: http://blog.exrick.cn
     email: 1012139570@qq.com
 
+
 # 关闭Spring Security
-security:
-  basic:
-    enabled: false
+#security:
+#  basic:
+#    enabled: false
 
 

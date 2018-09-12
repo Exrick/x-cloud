@@ -1,5 +1,6 @@
 server:
   port: 1001
+
 eureka:
   instance:
     # 使用ip注册
@@ -12,19 +13,35 @@ eureka:
       defaultZone: http://localhost:1000/eureka/
 
 spring:
+  application:
+    name: config-server
   cloud:
     config:
       server:
         # Git/SVN配置 更换svn此处改为svn:
         git:
           # 仓库地址与账密
-          uri:
+          uri: https://github.com/Exrick/xcloud-config
+          # private仓库需配置账密
           username:
           password:
-          # 指定文件夹
+          # 指定文件夹 相对搜索路径 可以配置多个
           search-paths:
+          # 指定从git上拉取至本地保存路径
+          # basedir:
       # 快速返回失败信息
       fail-fast: true
-  application:
-    name: config-server
+  rabbitmq:
+    host: 148.70.109.242
+    port: 5672
+    username: guest
+    password: guest
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+
+
 

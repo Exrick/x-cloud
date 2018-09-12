@@ -1,13 +1,14 @@
 package cn.exrick.xcloud.base.entity;
 
 import cn.exrick.xcloud.common.base.BaseXCloudEntity;
-import cn.exrick.xcloud.common.utils.AESUtil;
-import cn.hutool.core.util.StrUtil;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import cn.exrick.xcloud.common.constant.CommonConstant;
+import com.baomidou.mybatisplus.annotations.TableField;
+import com.baomidou.mybatisplus.annotations.TableName;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.UUID;
+import java.util.List;
 
 /**
  * @author Exrickx
@@ -15,75 +16,61 @@ import java.util.UUID;
 @Data
 @Entity
 @Table(name = "t_user")
+@TableName("t_user")
 public class User extends BaseXCloudEntity {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    private String id = UUID.randomUUID().toString().replace("-","");
-
+    @ApiModelProperty(value = "用户名")
+    @Column(unique = true,nullable = false)
     private String username;
 
-    @JsonIgnore
-    @Transient
+    @ApiModelProperty(value = "密码")
     private String password;
 
-    /**
-     * 数据库映射存入加密密码
-     */
-    @Column(name="password")
-    private String cryptPassword;
-
+    @ApiModelProperty(value = "昵称")
     private String nickName;
 
-    private String telPhone;
+    @ApiModelProperty(value = "手机")
+    private String mobile;
 
+    @ApiModelProperty(value = "邮件")
     private String email;
 
+    @ApiModelProperty(value = "地址")
     private String address;
 
-    /**
-     * 0女 1男 2保密
-     */
+    @ApiModelProperty(value = "0女 1男 2保密")
     private Integer sex;
 
-    private String avatar;
+    @ApiModelProperty(value = "用户头像")
+    @Column(length=1000)
+    private String avatar = CommonConstant.USER_DEFAULT_AVATAR;
 
-    private Integer type;
+    @ApiModelProperty(value = "用户类型 0普通用户 1管理员")
+    private Integer type = CommonConstant.USER_TYPE_NORMAL;
+
+    @ApiModelProperty(value = "状态 默认0正常 -1拉黑")
+    private Integer status = CommonConstant.USER_STATUS_NORMAL;
+
+    @ApiModelProperty(value = "描述/详情/备注")
+    private String description;
+
+    @ApiModelProperty(value = "所属部门id")
+    private String departmentId;
 
     @Transient
-    private String[] roles;
+    @TableField(exist=false)
+    @ApiModelProperty(value = "所属部门名称")
+    private String departmentTitle;
 
     @Transient
-    private String[] permissions;
+    @TableField(exist=false)
+    @ApiModelProperty(value = "用户拥有角色")
+    private List<Role> roles;
 
-    public String getCryptPassword() {
-
-        if(StrUtil.isBlank(cryptPassword) && StrUtil.isNotBlank(getPassword())) {
-            return AESUtil.aesEncrypt(getPassword());
-        }
-        return cryptPassword;
-    }
-
-    public void setCryptPassword(String cryptPassword) {
-        this.cryptPassword = cryptPassword;
-    }
-
-    public String getPassword() {
-
-        if(StrUtil.isBlank(password) && StrUtil.isNotBlank(cryptPassword)) {
-            password = AESUtil.aesDecrypt(cryptPassword);
-        }
-        return password;
-    }
-
-    public void setPassword(String password) {
-
-        if(StrUtil.isBlank(password)) {
-            password = "xcloud";
-        }
-        this.password = password;
-
-        this.setCryptPassword(AESUtil.aesEncrypt(getPassword()));
-    }
+    @Transient
+    @TableField(exist=false)
+    @ApiModelProperty(value = "用户拥有的权限")
+    private List<Permission> permissions;
 }

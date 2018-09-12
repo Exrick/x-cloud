@@ -5,3 +5,5 @@ target/
 *.iml
 
 *.bak
+
+application-prod.yml

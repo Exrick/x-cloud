@@ -1,13 +1,21 @@
 package cn.exrick.xcloud.common.base;
 
+import cn.exrick.xcloud.common.constant.CommonConstant;
+import cn.exrick.xcloud.common.utils.SnowFlakeUtil;
+import com.baomidou.mybatisplus.annotations.TableId;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.EntityListeners;
+import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.util.Date;
 
@@ -17,29 +25,34 @@ import java.util.Date;
 @Data
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
+@JsonIgnoreProperties(value={"hibernateLazyInitializer","handler","fieldHandler"})
 public abstract class BaseXCloudEntity implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
-    /**
-     * 状态
-     */
-    private Integer status;
+    @Id
+    @TableId
+    @ApiModelProperty(value = "唯一标识")
+    private String id = String.valueOf(SnowFlakeUtil.getFlowIdInstance().nextId());
 
-    /**
-     * 描述备注
-     */
-    private String description;
-
+    @ApiModelProperty(value = "创建者")
     private String createBy;
 
     @CreatedDate
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "创建时间")
     private Date createTime;
 
+    @ApiModelProperty(value = "更新者")
     private String updateBy;
 
     @LastModifiedDate
     @JsonFormat(timezone = "GMT+8", pattern = "yyyy-MM-dd HH:mm:ss")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @ApiModelProperty(value = "更新时间")
     private Date updateTime;
+
+    @ApiModelProperty(value = "删除标志 默认0")
+    private Integer delFlag = CommonConstant.STATUS_NORMAL;
 }

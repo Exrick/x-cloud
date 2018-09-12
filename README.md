@@ -13,3 +13,4 @@ base:1004
 - 配置文件加密 Jasypt加密 可到xcloud-common服务中找到JasyptUtil工具类生成加密结果
 ### 学习记录（更新中）
 - [Eureka注册中心的高可用](https://github.com/Exrick/x-cloud/wiki/Eureka%E6%B3%A8%E5%86%8C%E4%B8%AD%E5%BF%83%E7%9A%84%E9%AB%98%E5%8F%AF%E7%94%A8)
+- [统一配置中心及使用Spring Cloud Bus自动刷新配置](https://github.com/Exrick/x-cloud/wiki/%E7%BB%9F%E4%B8%80%E9%85%8D%E7%BD%AE%E4%B8%AD%E5%BF%83%E5%8F%8A%E4%BD%BF%E7%94%A8Spring-Cloud-Bus%E8%87%AA%E5%8A%A8%E5%88%B7%E6%96%B0%E9%85%8D%E7%BD%AE)

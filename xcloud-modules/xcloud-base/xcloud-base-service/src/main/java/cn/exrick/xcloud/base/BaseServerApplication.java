@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @SpringCloudApplication
 //可按需引入全局异常拦截、Swagger2、Redis等配置类[当然推荐配置扫描包]
 @ComponentScan({"cn.exrick.xcloud.base", "cn.exrick.xcloud.common"})
-//@Import({RestCtrlExceptionHandler.class, Swagger2Config.class, RedisCachingConfig.class})
+//@Import({RestCtrlExceptionHandler.class, Swagger2Config.class})
 //启用JPA审计
 @EnableJpaAuditing
 @EnableCaching

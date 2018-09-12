@@ -12,7 +12,7 @@ eureka:
     # 间隔多久拉取服务注册信息 默认30秒
     eviction-interval-timer-in-ms: 5000
   instance:
-    # 使用ip注册 已关闭
+    # 使用ip注册
     prefer-ip-address: true
     ip-address: 127.0.0.1
     # 默认hostname注册 可修改为其他名称
